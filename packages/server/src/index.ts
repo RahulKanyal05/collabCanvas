@@ -1,3 +1,5 @@
+export { createServer, ServerInstance } from './server.js';
+export { config } from './config.js';
 import { createServer } from './server.js';
 import { config } from './config.js';
 

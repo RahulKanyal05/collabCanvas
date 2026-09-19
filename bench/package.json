@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@collab/protocol": "*",
+    "@collab/server": "*",
     "ulid": "^2.3.0",
     "ws": "^8.17.1"
   },
