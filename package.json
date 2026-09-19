@@ -1,0 +1,27 @@
+{
+  "name": "collab-canvas-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "bench"
+  ],
+  "scripts": {
+    "typecheck": "npm run --workspaces --if-present typecheck",
+    "lint": "npm run --workspaces --if-present lint",
+    "test": "vitest run",
+    "test:unit": "vitest run packages/protocol packages/server/test/sequencer.test.ts",
+    "test:property": "vitest run packages/protocol/test/convergence.test.ts",
+    "test:integration": "vitest run packages/server/test/integration.test.ts",
+    "test:chaos": "vitest run packages/server/test/chaos.test.ts",
+    "test:mutation": "vitest run packages/protocol/test/mutation.test.ts",
+    "bench": "npm run --workspace=bench bench",
+    "bench:toxiproxy": "npm run --workspace=bench bench:toxiproxy",
+    "bench:docker-size": "npm run --workspace=bench docker-size",
+    "build": "npm run --workspaces --if-present build"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
