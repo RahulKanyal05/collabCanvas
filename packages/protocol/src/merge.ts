@@ -1,4 +1,4 @@
-import { BoardState, CanvasObject, SequencedOp, ClientOp } from './types.js';
+import { BoardState, CanvasObject, SequencedOp } from './types.js';
 
 export function createEmptyBoardState(): BoardState {
   return {

@@ -18,7 +18,8 @@
     "bench": "npm run --workspace=bench bench",
     "bench:toxiproxy": "npm run --workspace=bench bench:toxiproxy",
     "bench:docker-size": "npm run --workspace=bench docker-size",
-    "build": "npm run --workspaces --if-present build"
+    "build:client": "npm run --workspace=@collab/client build",
+    "build": "npm run --workspace=@collab/protocol build && npm run --workspaces --if-present build"
   },
   "devDependencies": {
     "typescript": "^5.4.5",

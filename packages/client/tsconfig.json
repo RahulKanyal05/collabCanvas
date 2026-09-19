@@ -14,7 +14,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@collab/protocol": ["../protocol/src/index.ts"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "../protocol/src"]
 }
