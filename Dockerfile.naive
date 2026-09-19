@@ -1,0 +1,15 @@
+# Naive Single-Stage Dockerfile for comparison
+FROM node:20
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+RUN npm run --workspace=@collab/protocol build
+RUN npm run --workspace=@collab/client build
+RUN npm run --workspace=@collab/server build
+
+EXPOSE 4000
+
+CMD ["node", "packages/server/dist/index.js"]

@@ -122,6 +122,7 @@
 |---|---|
 | `ws` | Minimal RFC 6455 compliant WebSocket implementation for explicit, predictable real-time protocol. |
 | `fastify` | High-performance, low-overhead HTTP framework for `/healthz`, `/metrics`, and serving client assets. |
+| `@fastify/static` | Static file plugin for Fastify to serve compiled client SPA assets and index.html fallback. |
 | `ioredis` | Robust Redis client with first-class support for Streams, Pub/Sub, and atomic Lua script execution. |
 | `zod` | Declarative schema validation runtime ensuring all inbound network messages conform to strict types. |
 | `pino` | Fast, structured JSON logger with minimal event-loop overhead for high-throughput WebSocket servers. |

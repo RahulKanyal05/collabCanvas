@@ -1,4 +1,7 @@
+import path from 'path';
+import fs from 'fs';
 import fastify, { FastifyInstance } from 'fastify';
+import fastifyStatic from '@fastify/static';
 import { WebSocketServer, WebSocket } from 'ws';
 import { Redis } from 'ioredis';
 import pino from 'pino';
@@ -65,6 +68,27 @@ export async function createServer(customConfig?: Partial<typeof config>): Promi
     return reply.send(await prometheus.register.metrics());
   });
 
+  // Serve static client assets if built
+  const clientDist = path.resolve(process.cwd(), '../client/dist');
+  const altClientDist = path.resolve(process.cwd(), 'packages/client/dist');
+  const distPath = fs.existsSync(clientDist)
+    ? clientDist
+    : fs.existsSync(altClientDist)
+    ? altClientDist
+    : null;
+
+  if (distPath) {
+    await app.register(fastifyStatic, {
+      root: distPath,
+      prefix: '/',
+      wildcard: false,
+    });
+
+    app.setNotFoundHandler((_req, reply) => {
+      return reply.sendFile('index.html');
+    });
+  }
+
   // Attach raw WebSocket Server
   const wss = new WebSocketServer({
     server: app.server,
@@ -105,11 +129,14 @@ export async function createServer(customConfig?: Partial<typeof config>): Promi
     clearInterval(heartbeatTimer);
 
     // Gracefully close all sockets with 1012 (Service Restart)
+    const closePromises: Promise<void>[] = [];
     for (const ws of wss.clients) {
       if (ws.readyState === WebSocket.OPEN) {
+        closePromises.push(new Promise((resolve) => ws.once('close', () => resolve())));
         ws.close(1012, 'Server restarting');
       }
     }
+    await Promise.all(closePromises);
 
     await new Promise<void>((resolve) => wss.close(() => resolve()));
     await app.close();

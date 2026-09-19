@@ -162,7 +162,9 @@ export class RoomManager {
       }
     }
 
-    await this.publishPresence(boardId);
+    if (this.redis.status === 'ready') {
+      await this.publishPresence(boardId).catch(() => {});
+    }
   }
 
   getClientInfo(ws: WebSocket): ClientConnectionInfo | undefined {

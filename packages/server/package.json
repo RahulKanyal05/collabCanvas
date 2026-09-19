@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@collab/protocol": "*",
+    "@fastify/static": "^7.0.4",
     "fastify": "^4.28.1",
     "ioredis": "^5.4.1",
     "pino": "^9.2.0",
