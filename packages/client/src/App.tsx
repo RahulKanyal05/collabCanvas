@@ -62,7 +62,8 @@ export const App: React.FC = () => {
   const syncEngine = useMemo(() => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const host = window.location.host;
-    const wsUrl = `${protocol}//${host}`;
+    const defaultWsUrl = `${protocol}//${host}`;
+    const wsUrl = import.meta.env.VITE_WS_URL || defaultWsUrl;
 
     return new ClientSyncEngine({
       wsUrl,
