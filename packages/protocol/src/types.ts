@@ -3,7 +3,7 @@ export interface Point {
   y: number;
 }
 
-export type CanvasObjectType = 'stroke' | 'rect' | 'ellipse';
+export type CanvasObjectType = 'stroke' | 'rect' | 'ellipse' | 'text' | 'sticky' | 'arrow' | 'line';
 
 export interface CanvasObject {
   id: string; // ULID
@@ -15,7 +15,10 @@ export interface CanvasObject {
   height: number;
   color: string;
   strokeWidth: number;
-  points?: Point[]; // Only for stroke type
+  points?: Point[]; // For stroke, line, arrow
+  text?: string; // For text and sticky notes
+  fontSize?: number; // In world units
+  fillColor?: string; // For sticky notes, shapes
   deleted: boolean;
   fieldSeqs: Record<string, number>;
 }
@@ -40,7 +43,7 @@ export interface UpdateOp {
   type: 'update';
   clientOpId: string;
   objectId: string;
-  patch: Partial<Pick<CanvasObject, 'x' | 'y' | 'width' | 'height' | 'color' | 'strokeWidth'>>;
+  patch: Partial<Pick<CanvasObject, 'x' | 'y' | 'width' | 'height' | 'color' | 'strokeWidth' | 'text' | 'fontSize' | 'fillColor'>>;
 }
 
 export interface DeleteOp {

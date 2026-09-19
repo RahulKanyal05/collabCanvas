@@ -5,7 +5,15 @@ export const PointSchema = z.object({
   y: z.number(),
 });
 
-export const CanvasObjectTypeSchema = z.enum(['stroke', 'rect', 'ellipse']);
+export const CanvasObjectTypeSchema = z.enum([
+  'stroke',
+  'rect',
+  'ellipse',
+  'text',
+  'sticky',
+  'arrow',
+  'line',
+]);
 
 export const CanvasObjectSchema = z.object({
   id: z.string().min(1).max(64),
@@ -18,6 +26,9 @@ export const CanvasObjectSchema = z.object({
   color: z.string().min(1).max(32),
   strokeWidth: z.number().min(0.5).max(100),
   points: z.array(PointSchema).optional(),
+  text: z.string().max(4000).optional(),
+  fontSize: z.number().min(6).max(200).optional(),
+  fillColor: z.string().min(1).max(32).optional(),
   deleted: z.boolean(),
   fieldSeqs: z.record(z.string(), z.number()),
 });
@@ -52,6 +63,9 @@ export const UpdateOpSchema = z.object({
     height: z.number().optional(),
     color: z.string().min(1).max(32).optional(),
     strokeWidth: z.number().min(0.5).max(100).optional(),
+    text: z.string().max(4000).optional(),
+    fontSize: z.number().min(6).max(200).optional(),
+    fillColor: z.string().min(1).max(32).optional(),
   }),
 });
 

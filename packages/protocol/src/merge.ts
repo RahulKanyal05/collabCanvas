@@ -36,6 +36,9 @@ export function applySequencedOp(state: BoardState, sequencedOp: SequencedOp): B
         color: seq,
         strokeWidth: seq,
         points: seq,
+        text: seq,
+        fontSize: seq,
+        fillColor: seq,
         deleted: seq,
       };
 
@@ -99,7 +102,17 @@ export function applySequencedOp(state: BoardState, sequencedOp: SequencedOp): B
       };
 
       let changed = false;
-      const allowedKeys = ['x', 'y', 'width', 'height', 'color', 'strokeWidth'] as const;
+      const allowedKeys = [
+        'x',
+        'y',
+        'width',
+        'height',
+        'color',
+        'strokeWidth',
+        'text',
+        'fontSize',
+        'fillColor',
+      ] as const;
 
       for (const key of allowedKeys) {
         if (patch[key] !== undefined) {
