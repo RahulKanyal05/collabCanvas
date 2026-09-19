@@ -1,6 +1,7 @@
 {
   "name": "@collab/bench",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "bench": "tsx src/runner.ts",
