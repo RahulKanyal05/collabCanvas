@@ -23,5 +23,8 @@
   "devDependencies": {
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@fastify/static": "^7.0.4"
   }
 }

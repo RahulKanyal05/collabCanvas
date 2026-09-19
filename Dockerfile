@@ -51,6 +51,6 @@ USER node
 EXPOSE 4000
 
 HEALTHCHECK --interval=15s --timeout=5s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:4000/healthz || exit 1
+  CMD wget --no-verbose --tries=1 --spider http://127.0.0.1:4000/healthz || exit 1
 
 CMD ["node", "packages/server/dist/index.js"]
