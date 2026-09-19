@@ -10,10 +10,10 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "@collab/protocol": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "ulid": "^2.3.0"
+    "ulid": "^2.3.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
